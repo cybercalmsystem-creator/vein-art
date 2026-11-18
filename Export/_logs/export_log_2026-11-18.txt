@@ -1,0 +1,10 @@
+﻿
+=== batch_export  2026-11-18 21:46:55  D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Bot6.max ===
+validator: FAIL 0, WARN 0  отчёт: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Export\_logs\validate_Bot6_2026-11-18_214656.txt
+FBX  SM_Bot6  -> D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Export\Bot6\SM_Bot6.fbx  ok=true  tris=14348  size=2815 KB
+  -> Unity D:\Unity Projects\VR\vr test\My project\Assets\Art\Bot6\SM_Bot6.fbx
+TEX  T_Bot6_BaseColor.png  11301 KB
+TEX  T_Bot6_Roughness.png  5401 KB
+TEX  T_Bot6_Metallic.png  2012 KB
+TEX  T_Bot6_Normal.png  14188 KB
+=== ИТОГ: OK  21:46:57 ===

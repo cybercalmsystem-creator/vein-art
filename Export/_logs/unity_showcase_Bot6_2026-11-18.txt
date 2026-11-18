@@ -1,0 +1,19 @@
+﻿=== Showcase Bot6 — Unity 6000.6.8f1 — 18.11.2026 21:50 ===
+[OK] упакована T_Bot6_MetallicSmoothness.png (metallic R, smoothness = 1 - roughness в A)
+[OK] префаб Assets/Art/Bot6/Prefabs/PF_Bot6.prefab
+[OK] сцена Assets/Art/Showcase/Showcase.unity
+[OK] Scale (1,1,1) у всех узлов
+[INFO] Габариты, м (X,Y,Z): 1,557 x 0,847 x 1,896; низ Y=0,000
+[OK] 1 единица = 1 метр, стоит на Y=0 (эталон REF_Human_180 = 1,8 м рядом)
+[OK] треугольников 14312 / 15000
+[OK] материалы: PF_Bot6=M_Bot6 (Universal Render Pipeline/Lit)
+[OK] Текстура T_Bot6_BaseColor: 2048x2048, тип=Default, sRGB=True
+[OK] Текстура T_Bot6_Metallic: 2048x2048, тип=Default, sRGB=False
+[OK] Текстура T_Bot6_MetallicSmoothness: 2048x2048, тип=Default, sRGB=False
+[OK] Текстура T_Bot6_Normal: 2048x2048, тип=NormalMap, sRGB=False
+[OK] Текстура T_Bot6_Roughness: 2048x2048, тип=Default, sRGB=False
+[OK] LOD: один уровень (14312 тр. в лимите NPC 15 000 — LOD по стандарту не требуется)
+[OK] анимации: нет (статический меш SM_, ожидаемо)
+[OK] предупреждений импорта: 0
+Скриншот: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Export\_logs\unity_showcase_Bot6_2026-11-18.png
+=== ИТОГ: ОК (FAIL 0, WARN 0) ===

@@ -1,0 +1,15 @@
+﻿asset_validator.ms  правила 1.0 (2026-11-18)  сцена: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Bot6.max
+время: 2026-11-18 21:46:55
+[OK] системные единицы: сантиметры
+[OK] SM_Bot6: имя
+[OK] SM_Bot6: scale 1
+[OK] SM_Bot6: pivot на низу
+[INFO] SM_Bot6: габариты, см: 155.7 x 189.6 x 84.7
+[OK] SM_Bot6: треугольников 14348 / 15000 (npc)
+[OK] SM_Bot6: UV канал 1
+[OK] SM_Bot6: материал M_Bot6
+[OK] SM_Bot6: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6: T_Bot6_Normal 2048x2048
+=== ИТОГ: OK  (FAIL 0, WARN 0, узлов 1) ===

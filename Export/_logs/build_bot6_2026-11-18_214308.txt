@@ -1,0 +1,14 @@
+﻿build_bot6.ms  2026-11-18 21:43:08
+scene: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Bot6.max
+
+HP texture: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Meshy\Meshy_AI_Twin_Ring_Battle_Drone_20261118_texture.fbm\Image_0.jpg  exists: true
+HP texture: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Meshy\Meshy_AI_Twin_Ring_Battle_Drone_20261118_texture.fbm\texture_0_roughness.png  exists: true
+HP texture: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Meshy\Meshy_AI_Twin_Ring_Battle_Drone_20261118_texture.fbm\Image_2.jpg  exists: true
+HP_Bot6: 1132358 tris
+deleted old low-poly 'bot#6': 36698 tris
+SM_Bot6: 14348 tris, open edges 0, non-manifold 0, scale [1,1,1], 13 s
+UV: coverage (percent) 61.1497, overlaps 6
+bake: #(#("BaseColor", true), #("Roughness", true), #("Metallic", true), #("Normal", true))
+
+saved: D:\Unity Projects\Scripts\3dsMax\Claude Environment\Project\3D-Assistant\Source\Bot6\Bot6.max
+objects: #("HP_Bot6", "SM_Bot6")
