@@ -1,0 +1,27 @@
+Пробное восстановление исходников (Стандарт 3D-пайплайна, раздел 3, раз в месяц)
+Дата: 19.11.2026
+Источник: https://github.com/cybercalmsystem-creator/Scripts, тег art-2026-W47 (коммит 02bebdb)
+Куда: новая пустая папка (без локального кэша LFS), как на чистой машине
+
+Команды:
+  git -c core.longpaths=true clone --branch art-2026-W47 https://github.com/cybercalmsystem-creator/Scripts.git
+  git config core.longpaths true
+  git lfs fsck
+
+Результат:
+  время загрузки ............ 1007 с (~17 мин, ~200 МБ)
+  файлов в теге ............. 41
+  из них в Git LFS .......... 21 (все скачаны, указателей без содержимого: 0)
+  git lfs fsck .............. OK
+  git status ................ чисто
+  Bot6.max .................. 104,3 МБ, открывается в 3ds Max 2027 (inspect_max_file): объекты HP_Bot6, SM_Bot6
+  T_Bot6_BaseColor.png ...... читается, 2048x2048
+  Template.max .............. скачан (618 КБ)
+
+Найдено:
+  Путь Source/Bot6/Meshy/...texture.fbm/texture_0_roughness.png длиннее 260 символов.
+  Без core.longpaths=true Windows не распаковывает этот файл, и checkout ломается.
+  Обязательно: git config --global core.longpaths true на каждой машине художника.
+
+Итог: ОК — исходники недели восстанавливаются полностью.
+Следующее пробное восстановление: до 19.12.2026.
