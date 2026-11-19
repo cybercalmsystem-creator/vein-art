@@ -5,6 +5,8 @@ Crocos · отдел Games · ПМ — Диас · 3D-модельер — Гр�
 Репозиторий временно на GitHub: доступа к GitLab Crocos пока нет. Когда появится — перенос с историей и LFS.
 История до 19.11.2026 перенесена из `cybercalmsystem-creator/Scripts` (папка `3dsMax/Claude Environment/Project/3D-Assistant`).
 
+**Коллегам:** пошаговая инструкция — [Docs/FOR_COLLEAGUES.md](Docs/FOR_COLLEAGUES.md) · журнал ИИ — [Docs/AI_LOG.md](Docs/AI_LOG.md)
+
 ## Быстрый старт (новая машина)
 
 ```
