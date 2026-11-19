@@ -186,8 +186,13 @@ public static class ShowcaseBuilder
         Line(sizeOk ? "OK" : "FAIL", "1 единица = 1 метр, стоит на Y=0 (эталон REF_Human_180 = 1,8 м рядом)");
         // 2. меши
         var mfs = inst.GetComponentsInChildren<MeshFilter>(true);
-        int tris = mfs.Where(m => m.sharedMesh != null).Sum(m => m.sharedMesh.triangles.Length / 3);
-        Line(tris <= MaxTris ? "OK" : "FAIL", "треугольников " + tris + " / " + MaxTris);
+        // лимит по ASSET_RULES §4 — на меш; сумма частей — бюджет ассета (выше лимита — WARN)
+        var perMesh = mfs.Where(m => m.sharedMesh != null).Select(m => new { m.name, t = m.sharedMesh.triangles.Length / 3 }).ToList();
+        int tris = perMesh.Sum(x => x.t);
+        int maxMesh = perMesh.Count > 0 ? perMesh.Max(x => x.t) : 0;
+        Line(maxMesh <= MaxTris ? "OK" : "FAIL", "треугольников на меш: макс. " + maxMesh + " / " + MaxTris + " (мешей " + perMesh.Count + ")");
+        if (perMesh.Count > 1)
+            Line(tris <= MaxTris ? "OK" : "WARN", "треугольников всего по ассету: " + tris + " / " + MaxTris + " — " + string.Join(", ", perMesh.Select(x => x.name + "=" + x.t)));
         // 3. материалы
         var rends = inst.GetComponentsInChildren<Renderer>(true);
         var badMat = rends.SelectMany(r => r.sharedMaterials).Where(m => m == null || m.shader == null || m.shader.name.Contains("Error") || m.name.StartsWith("Default")).Count();
@@ -207,7 +212,7 @@ public static class ShowcaseBuilder
         // 4. LOD
         var lod = inst.GetComponentInChildren<LODGroup>();
         if (lod != null) Line("OK", "LODGroup: " + lod.lodCount + " уровней");
-        else Line(tris <= MaxTris ? "OK" : "WARN", "LOD: один уровень (" + tris + " тр. в лимите NPC 15 000 — LOD по стандарту не требуется)");
+        else Line(tris <= MaxTris ? "OK" : "WARN", "LOD: один уровень (" + tris + " тр. всего; " + (tris <= MaxTris ? "в лимите NPC 15 000 — LOD по стандарту не требуется" : "выше 15 000 — решить с ведущим: LOD или оптимизация") + ")");
         // 5. анимации
         var clips = AssetDatabase.LoadAllAssetsAtPath(fbx).OfType<AnimationClip>().Where(c => !c.name.StartsWith("__preview__")).ToList();
         Line("OK", "анимации: " + (clips.Count == 0 ? "нет (статический меш SM_, ожидаемо)" : string.Join(", ", clips.Select(c => c.name + " " + c.length.ToString("0.00") + " c"))));

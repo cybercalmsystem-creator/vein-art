@@ -1,0 +1,11 @@
+﻿
+=== batch_export  2026-11-19 18:55:33  D:\Unity Projects\vein-art\Source\Bot6\Bot6.max ===
+validator: FAIL 0, WARN 13  отчёт: D:\Unity Projects\vein-art\Export\_logs\validate_Bot6_2026-11-19_185535.txt
+FBX  8 узл. -> D:\Unity Projects\vein-art\Export\Bot6\SM_Bot6.fbx  ok=true  tris=16809  size=2647 KB
+     узлы: #("SM_Bot6_RingL", "SM_Bot6_RingR", "SM_Bot6_GunL", "SM_Bot6_GunR", "SM_Bot6_Camera", "SM_Bot6_Antenna", "SM_Bot6_HullTop", "SM_Bot6_HullBottom")
+  -> Unity D:\Unity Projects\VR\vr test\My project\Assets\Art\Bot6\SM_Bot6.fbx
+TEX  T_Bot6_BaseColor.png  7507 KB
+TEX  T_Bot6_Roughness.png  2994 KB
+TEX  T_Bot6_Metallic.png  1254 KB
+TEX  T_Bot6_Normal.png  6926 KB
+=== ИТОГ: OK  18:55:36 ===

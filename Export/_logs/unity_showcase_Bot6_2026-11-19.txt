@@ -1,0 +1,20 @@
+﻿=== Showcase Bot6 — Unity 6000.6.8f1 — 19.11.2026 18:57 ===
+[OK] упакована T_Bot6_MetallicSmoothness.png (metallic R, smoothness = 1 - roughness в A)
+[OK] префаб Assets/Art/Bot6/Prefabs/PF_Bot6.prefab
+[OK] сцена Assets/Art/Showcase/Showcase.unity
+[OK] Scale (1,1,1) у всех узлов
+[INFO] Габариты, м (X,Y,Z): 1,557 x 0,847 x 1,896; низ Y=0,000
+[OK] 1 единица = 1 метр, стоит на Y=0 (эталон REF_Human_180 = 1,8 м рядом)
+[OK] треугольников на меш: макс. 3186 / 15000 (мешей 8)
+[WARN] треугольников всего по ассету: 16809 / 15000 — SM_Bot6_Antenna=88, SM_Bot6_Camera=1736, SM_Bot6_GunL=1468, SM_Bot6_GunR=1476, SM_Bot6_HullBottom=3053, SM_Bot6_HullTop=3186, SM_Bot6_RingL=2956, SM_Bot6_RingR=2846
+[OK] материалы: SM_Bot6_Antenna=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_Camera=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_GunL=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_GunR=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_HullBottom=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_HullTop=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_RingL=M_Bot6 (Universal Render Pipeline/Lit), SM_Bot6_RingR=M_Bot6 (Universal Render Pipeline/Lit)
+[OK] Текстура T_Bot6_BaseColor: 2048x2048, тип=Default, sRGB=True
+[OK] Текстура T_Bot6_Metallic: 2048x2048, тип=Default, sRGB=False
+[OK] Текстура T_Bot6_MetallicSmoothness: 2048x2048, тип=Default, sRGB=False
+[OK] Текстура T_Bot6_Normal: 2048x2048, тип=NormalMap, sRGB=False
+[OK] Текстура T_Bot6_Roughness: 2048x2048, тип=Default, sRGB=False
+[WARN] LOD: один уровень (16809 тр. всего; выше 15 000 — решить с ведущим: LOD или оптимизация)
+[OK] анимации: нет (статический меш SM_, ожидаемо)
+[OK] предупреждений импорта: 0
+Скриншот: D:\Unity Projects\vein-art\Export\_logs\unity_showcase_Bot6_2026-11-19.png
+=== ИТОГ: ОК (FAIL 0, WARN 2) ===

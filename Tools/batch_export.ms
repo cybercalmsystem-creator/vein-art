@@ -4,8 +4,9 @@
 
 	Что делает для открытой сцены Source/<Asset>/<Asset>.max:
 	  1. asset_validator.ms -- при FAIL экспорт прерывается.
-	  2. Каждый узел слоя Export -> Export/<Asset>/<Node>.fbx (FBX 2020, Y-up, сантиметры, сглаживание, тангенты, без камер/света),
-	     узел на время экспорта ставится в начало координат (pivot = 0,0,0), затем возвращается.
+	  2. Все узлы слоя Export -> один Export/<Asset>/SM_<Asset>.fbx (SK_, если есть скин) (FBX 2020, Y-up, сантиметры,
+	     сглаживание, тангенты, без камер/света). Части модели сохраняют взаимное положение; на время экспорта группа
+	     сдвигается так, чтобы центр низа общих габаритов был в 0,0,0, затем возвращается (19.11.2026: Bot6 из 8 частей).
 	  3. Текстуры T_* материала -> Export/<Asset>/Textures/.
 	  4. Копия FBX и текстур -> <Unity>/Assets/Art/<Asset>/ (Textures/ рядом), если задан BE_UNITY_ASSETS.
 	  5. Журнал Export/_logs/export_log_ГГГГ-ММ-ДД.txt (дописывается).
@@ -72,33 +73,40 @@ fn BE_run =
 	BE_fbxSettings()
 	local okAll = true
 	local oldSel = selection as array
-	for n in AR_exportNodes() do
+	-- 2. FBX: все узлы слоя Export -> ОДИН файл <Prefix>_<Asset>.fbx (части модели сохраняют взаимное положение).
+	--    Группа на время экспорта сдвигается так, чтобы центр низа общих габаритов был в 0,0,0, затем возвращается.
+	local nodes = AR_exportNodes()
+	local prefix = if (for n in nodes where matchPattern n.name pattern:"SK_*" collect n).count > 0 then "SK_" else "SM_"
+	local fbx = outDir + "\\" + prefix + asset + ".fbx"
+	local bmin = nodes[1].min; local bmax = nodes[1].max
+	for n in nodes do (bmin = [amin #(bmin.x, n.min.x), amin #(bmin.y, n.min.y), amin #(bmin.z, n.min.z)]; bmax = [amax #(bmax.x, n.max.x), amax #(bmax.y, n.max.y), amax #(bmax.z, n.max.z)])
+	local shift = -[(bmin.x + bmax.x) / 2.0, (bmin.y + bmax.y) / 2.0, bmin.z]
+	local roots = for n in nodes where (n.parent == undefined or (findItem nodes n.parent) == 0) collect n
+	for n in roots do move n shift
+	select nodes
+	local ok = exportFile fbx #noPrompt selectedOnly:true using:FBXEXP
+	for n in roots do move n (-shift)
+	local tris = 0
+	for n in nodes do (local m = snapshotAsMesh n; tris += m.numfaces; delete m)
+	BE_w ("FBX  " + nodes.count as string + " узл. -> " + fbx + "  ok=" + ((ok and doesFileExist fbx) as string) + "  tris=" + tris as string + "  size=" + (((getFileSize fbx) / 1024) as integer) as string + " KB")
+	BE_w ("     узлы: " + ((for n in nodes collect n.name) as string))
+	if not (ok and doesFileExist fbx) do okAll = false
+	if unityDir != "" and doesFileExist fbx do
 	(
-		-- 2. FBX
-		local oldPos = n.pos
-		n.pos = [0, 0, 0]
-		select n
-		local fbx = outDir + "\\" + n.name + ".fbx"
-		local ok = exportFile fbx #noPrompt selectedOnly:true using:FBXEXP
-		n.pos = oldPos
-		local m = snapshotAsMesh n; local tris = m.numfaces; delete m
-		BE_w ("FBX  " + n.name + "  -> " + fbx + "  ok=" + ((ok and doesFileExist fbx) as string) + "  tris=" + tris as string + "  size=" + (((getFileSize fbx) / 1024) as integer) as string + " KB")
-		if not (ok and doesFileExist fbx) do okAll = false
-		if unityDir != "" and doesFileExist fbx do
-		(
-			BE_copy fbx (unityDir + "\\" + n.name + ".fbx")
-			BE_w ("  -> Unity " + unityDir + "\\" + n.name + ".fbx")
-		)
-		-- 3. текстуры
-		if n.material != undefined do
-			for b in (getClassInstances BitmapTexture target:n.material) where doesFileExist b.filename do
-			(
-				local fn_ = filenameFromPath b.filename
-				BE_copy b.filename (outDir + "\\Textures\\" + fn_)
-				if unityDir != "" do BE_copy b.filename (unityDir + "\\Textures\\" + fn_)
-				BE_w ("TEX  " + fn_ + "  " + (((getFileSize b.filename) / 1024) as integer) as string + " KB")
-			)
+		BE_copy fbx (unityDir + "\\" + prefix + asset + ".fbx")
+		BE_w ("  -> Unity " + unityDir + "\\" + prefix + asset + ".fbx")
 	)
+	-- 3. текстуры (без повторов)
+	local done = #()
+	for n in nodes where n.material != undefined do
+		for b in (getClassInstances BitmapTexture target:n.material) where doesFileExist b.filename and (findItem done (toLower b.filename)) == 0 do
+		(
+			append done (toLower b.filename)
+			local fn_ = filenameFromPath b.filename
+			BE_copy b.filename (outDir + "\\Textures\\" + fn_)
+			if unityDir != "" do BE_copy b.filename (unityDir + "\\Textures\\" + fn_)
+			BE_w ("TEX  " + fn_ + "  " + (((getFileSize b.filename) / 1024) as integer) as string + " KB")
+		)
 	if oldSel.count > 0 then select oldSel else clearSelection()
 	BE_w ("=== ИТОГ: " + (if okAll then "OK" else "ОШИБКИ") + "  " + (BE_now "HH:mm:ss") + " ===")
 	close BE_log; BE_log = undefined
