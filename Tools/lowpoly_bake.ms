@@ -17,7 +17,10 @@
 	  * Roughness / metallic / normal читаются как Raw (правила ввода OCIO по маске имени, LB_ensureRawRules).
 	  * Цвет и данные печём старым Render To Texture (DiffuseMap, свет выключен) с проекцией по клетке,
 	    без фильтрации битмапа: Bake to Texture в Scanline пишет в Roughness/Metalness цвет вместо данных.
-	  * Нормали печём Bake to Texture (MikkTSpace, как в Unity).
+	  * Нормали печём Bake to Texture (MikkTSpace, как в Unity), зелёный канал Y+ (OpenGL, как в Unity).
+	    По умолчанию Bake to Texture пишет Y- (DirectX), поэтому опция YGreen ставится явно (исправлено 19.11.2026).
+	  * На время запечки нормалей bump/normal-карта материала HP выключается: иначе Bake to Texture
+	    подмешивает её в результат (у Meshy это Image_2.jpg, читается как sRGB -> «мятая» поверхность).
 	Сцену не сохраняет.
 */
 
@@ -165,6 +168,15 @@ fn LB_bakeOne lp hp srcFile outFile =
 	doesFileExist outFile
 )
 
+-- опция карты Bake to Texture по имени (индексы опций могут меняться между версиями Max)
+fn LB_setMapOption m optName val =
+(
+	local done = false
+	for i = 1 to m.getOptionsCount() where (m.getOptionName i) == optName do done = m.setOptionValue i val
+	if not done do format "[lowpoly_bake] ВНИМАНИЕ: опция % не установлена\n" optName
+	done
+)
+
 fn LB_bake lp hp outDir assetName baseColor:"" roughness:"" metallic:"" cagePush:0.6 =
 (
 	makeDir outDir all:true
@@ -175,6 +187,7 @@ fn LB_bake lp hp outDir assetName baseColor:"" roughness:"" metallic:"" cagePush
 	local cs = ""; local dp = ""; local vt = ""
 	local oldConv = ColorPipelineMgr.GetDefaultOutputConversion colorSpace:&cs display:&dp viewTransform:&vt fileType:#GammaEncoded
 	local hpHidden = hp.isHidden
+	local hpBumpOn = undefined
 	try
 	(
 		unhide hp
@@ -198,13 +211,20 @@ fn LB_bake lp hp outDir assetName baseColor:"" roughness:"" metallic:"" cagePush
 		if roughness != "" do append res #("Roughness", LB_bakeOne lp hp roughness (outDir + "/T_" + assetName + "_Roughness.png"))
 		if metallic != "" do append res #("Metallic", LB_bakeOne lp hp metallic (outDir + "/T_" + assetName + "_Metallic.png"))
 
-		-- нормали: Bake to Texture, MikkTSpace, без конверсии
+		-- нормали: Bake to Texture, MikkTSpace, Y+ (OpenGL), без конверсии, только геометрия HP
+		if hp.material != undefined and (isProperty hp.material #bump_map_on) do
+		(
+			hpBumpOn = hp.material.bump_map_on
+			hp.material.bump_map_on = false
+		)
 		BakeToTexture.deleteAllMaps()
 		BakeToTexture.outputPath = outDir + "/"
 		BakeToTexture.alwaysOverwriteExistingFiles = true
 		local m = BakeToTexture.addMapByTypeName lp "Normal"
 		m.setImageSize LB_SIZE LB_SIZE; m.edgePadding = 16; m.uvChannel = 1; m.fileType = "png"
 		m.projectionModifierIndex = 1; m.projectionMethod = 1; m.projectionResolveHitType = 0
+		LB_setMapOption m "MikkTForTangent" true
+		LB_setMapOption m "YGreen" 0
 		m.fileName = "T_" + assetName + "_Normal"
 		select lp
 		BakeToTexture.bake()
@@ -213,6 +233,7 @@ fn LB_bake lp hp outDir assetName baseColor:"" roughness:"" metallic:"" cagePush
 	)
 	catch (append res #("exception", getCurrentException()))
 	-- вернуть как было
+	if hpBumpOn != undefined do hp.material.bump_map_on = hpBumpOn
 	local s2 = cs; local d2 = dp; local v2 = vt
 	ColorPipelineMgr.SetDefaultOutputConversion oldConv colorSpace:&s2 display:&d2 viewTransform:&v2 fileType:#GammaEncoded
 	renderers.current = oldRenderer

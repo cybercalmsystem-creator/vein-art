@@ -20,7 +20,22 @@
 			else if doesFileExist nf then (b.filename = nf; fixed += 1)
 			else append missing f
 		)
-		else if not (doesFileExist f) do append missing f
+		else
+		(
+			-- путь вне репозитория (например, исходная папка художника): ищем файл с тем же именем в Source\<Asset>\
+			local nm = filenameFromPath f
+			local found = undefined
+			local stack = #(maxFilePath)
+			while found == undefined and stack.count > 0 do
+			(
+				local d = stack[stack.count]; deleteItem stack stack.count
+				local c = getFiles (d + nm)
+				if c.count > 0 then found = c[1] else join stack (getDirectories (d + "*"))
+			)
+			if found != undefined then (b.filename = found; fixed += 1)
+			else if not (doesFileExist f) then append missing f
+			else append missing ("(вне репозитория) " + f)
+		)
 	)
 	local msg = "relink_paths: repo=" + repo + " fixed=" + fixed as string + " already_ok=" + same as string + " missing=" + missing.count as string
 	for m in missing do msg += "\n  missing: " + m

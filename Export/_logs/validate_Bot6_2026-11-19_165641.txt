@@ -1,0 +1,108 @@
+﻿asset_validator.ms  правила 1.0 (2026-11-18)  сцена: D:\Unity Projects\vein-art\Source\Bot6\Bot6.max
+время: 2026-11-19 16:56:39
+[OK] системные единицы: сантиметры
+[OK] SM_Bot6_RingL: имя
+[OK] SM_Bot6_RingL: scale 1
+[WARN] SM_Bot6_RingL: pivot не на низу (pivot.z=42.7, низ=34.1 см)
+[WARN] SM_Bot6_RingL: не стоит на Z=0 (низ 34.1 см)
+[INFO] SM_Bot6_RingL: габариты, см: 69.1 x 62.2 x 17.2
+[OK] SM_Bot6_RingL: треугольников 2956 / 15000 (npc)
+[OK] SM_Bot6_RingL: UV канал 1
+[OK] SM_Bot6_RingL: материал M_Bot6
+[OK] SM_Bot6_RingL: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_RingL: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_RingL: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_RingL: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_RingR: имя
+[OK] SM_Bot6_RingR: scale 1
+[WARN] SM_Bot6_RingR: pivot не на низу (pivot.z=42.7, низ=34.1 см)
+[WARN] SM_Bot6_RingR: не стоит на Z=0 (низ 34.1 см)
+[INFO] SM_Bot6_RingR: габариты, см: 68.3 x 62.4 x 17.2
+[OK] SM_Bot6_RingR: треугольников 2846 / 15000 (npc)
+[OK] SM_Bot6_RingR: UV канал 1
+[OK] SM_Bot6_RingR: материал M_Bot6
+[OK] SM_Bot6_RingR: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_RingR: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_RingR: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_RingR: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_GunL: имя
+[OK] SM_Bot6_GunL: scale 1
+[WARN] SM_Bot6_GunL: pivot не на низу (pivot.z=6.9, низ=0.3 см)
+[INFO] SM_Bot6_GunL: габариты, см: 47.3 x 13.5 x 13.3
+[OK] SM_Bot6_GunL: треугольников 1468 / 15000 (npc)
+[OK] SM_Bot6_GunL: UV канал 1
+[OK] SM_Bot6_GunL: материал M_Bot6
+[OK] SM_Bot6_GunL: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_GunL: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_GunL: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_GunL: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_GunR: имя
+[OK] SM_Bot6_GunR: scale 1
+[WARN] SM_Bot6_GunR: pivot не на низу (pivot.z=6.9, низ=0.3 см)
+[INFO] SM_Bot6_GunR: габариты, см: 47.3 x 13.6 x 13.2
+[OK] SM_Bot6_GunR: треугольников 1476 / 15000 (npc)
+[OK] SM_Bot6_GunR: UV канал 1
+[OK] SM_Bot6_GunR: материал M_Bot6
+[OK] SM_Bot6_GunR: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_GunR: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_GunR: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_GunR: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_Camera: имя
+[OK] SM_Bot6_Camera: scale 1
+[WARN] SM_Bot6_Camera: pivot не на низу (pivot.z=32.4, низ=15.6 см)
+[WARN] SM_Bot6_Camera: не стоит на Z=0 (низ 15.6 см)
+[INFO] SM_Bot6_Camera: габариты, см: 18.4 x 27.2 x 33.6
+[OK] SM_Bot6_Camera: треугольников 1736 / 15000 (npc)
+[OK] SM_Bot6_Camera: UV канал 1
+[OK] SM_Bot6_Camera: материал M_Bot6
+[OK] SM_Bot6_Camera: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_Camera: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_Camera: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_Camera: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_Antenna: имя
+[OK] SM_Bot6_Antenna: scale 1
+[WARN] SM_Bot6_Antenna: pivot не на низу (pivot.z=73.9, низ=63.0 см)
+[WARN] SM_Bot6_Antenna: не стоит на Z=0 (низ 63.0 см)
+[INFO] SM_Bot6_Antenna: габариты, см: 33.4 x 2.4 x 21.7
+[OK] SM_Bot6_Antenna: треугольников 88 / 15000 (npc)
+[OK] SM_Bot6_Antenna: UV канал 1
+[OK] SM_Bot6_Antenna: материал M_Bot6
+[OK] SM_Bot6_Antenna: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_Antenna: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_Antenna: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_Antenna: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_HullTop: имя
+[OK] SM_Bot6_HullTop: scale 1
+[WARN] SM_Bot6_HullTop: pivot не на низу (pivot.z=47.3, низ=31.0 см)
+[WARN] SM_Bot6_HullTop: не стоит на Z=0 (низ 31.0 см)
+[INFO] SM_Bot6_HullTop: габариты, см: 86.3 x 65.0 x 32.7
+[OK] SM_Bot6_HullTop: треугольников 3186 / 15000 (npc)
+[OK] SM_Bot6_HullTop: UV канал 1
+[OK] SM_Bot6_HullTop: материал M_Bot6
+[OK] SM_Bot6_HullTop: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_HullTop: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_HullTop: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_HullTop: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6_HullBottom: имя
+[OK] SM_Bot6_HullBottom: scale 1
+[WARN] SM_Bot6_HullBottom: pivot не на низу (pivot.z=15.5, низ=0.0 см)
+[INFO] SM_Bot6_HullBottom: габариты, см: 78.1 x 58.9 x 31.0
+[OK] SM_Bot6_HullBottom: треугольников 3053 / 15000 (npc)
+[OK] SM_Bot6_HullBottom: UV канал 1
+[OK] SM_Bot6_HullBottom: материал M_Bot6
+[OK] SM_Bot6_HullBottom: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6_HullBottom: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6_HullBottom: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6_HullBottom: T_Bot6_Normal 2048x2048
+[OK] SM_Bot6: имя
+[OK] SM_Bot6: scale 1
+[OK] SM_Bot6: pivot на низу
+[INFO] SM_Bot6: габариты, см: 155.7 x 189.6 x 84.7
+[OK] SM_Bot6: треугольников 14557 / 15000 (npc)
+[OK] SM_Bot6: UV канал 1
+[OK] SM_Bot6: материал M_Bot6
+[OK] SM_Bot6: T_Bot6_BaseColor 2048x2048
+[OK] SM_Bot6: T_Bot6_Roughness 2048x2048
+[OK] SM_Bot6: T_Bot6_Metallic 2048x2048
+[OK] SM_Bot6: T_Bot6_Normal 2048x2048
+=== ИТОГ: OK с предупреждениями  (FAIL 0, WARN 13, узлов 9) ===
