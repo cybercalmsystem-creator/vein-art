@@ -1,12 +1,12 @@
 ﻿# weekly_snapshot.ps1 — пятничный снимок исходников (Стандарт 3D-пайплайна, раздел 3).
-# Коммитит изменения в Source/ и Export/ проекта 3D-Assistant и ставит тег art-ГГГГ-WНН (ISO-неделя), пушит в origin.
+# Коммитит изменения в Source/ и Export/ репозитория vein-art (проект в корне) и ставит тег art-ГГГГ-WНН (ISO-неделя), пушит в origin.
 # Расписание: задача Windows «Art weekly snapshot», пятница 20:00 (Register-ScheduledTask, см. Docs/ASSET_RULES.md).
 # Защита: любая ошибка git — стоп без коммита; в снимок попадают только Source/ и Export/,
 # удаление файлов вне них — стоп. Журнал: Export/_logs/snapshot_log.txt (ошибки — в %LOCALAPPDATA%\art_snapshot_error.log).
-param([string]$Repo = (Resolve-Path "$PSScriptRoot\..\..\..\..\..").Path)
+param([string]$Repo = (Resolve-Path "$PSScriptRoot\..").Path)
 
 $ErrorActionPreference = "Stop"
-$proj = "3dsMax/Claude Environment/Project/3D-Assistant"
+$proj = "."   # путь проекта внутри репозитория; "." — проект в корне
 $now = Get-Date
 # ISO-неделя (работает и в Windows PowerShell 5.1, где нет [ISOWeek]): берём четверг этой недели
 $thu = $now.Date.AddDays(3 - (([int]$now.DayOfWeek + 6) % 7))
@@ -34,7 +34,8 @@ try {
     Git-Run add -- "$proj/Source" "$proj/Export" | Out-Null
     # в индексе не должно быть ничего вне Source/ и Export/ и никаких удалений вне них
     $staged = Git-Run diff --cached --name-status -M
-    $bad = $staged | Where-Object { $_ -and ($_ -notmatch [regex]::Escape("$proj/Source/")) -and ($_ -notmatch [regex]::Escape("$proj/Export/")) }
+    $pre = if ($proj -eq ".") { "" } else { "$proj/" }
+    $bad = $staged | Where-Object { $_ -and ($_ -notmatch ("\s" + [regex]::Escape("${pre}Source/"))) -and ($_ -notmatch ("\s" + [regex]::Escape("${pre}Export/"))) }
     if ($bad) { Git-Run reset --quiet | Out-Null; throw "в снимок попали файлы вне Source/ и Export/ — стоп:`n$($bad -join "`n")" }
     # удаление исходника автоснимком недопустимо (часто это сбой checkout, например путь > 260 символов); удалять — руками отдельным коммитом
     $del = $staged | Where-Object { $_ -match '^D\s' }

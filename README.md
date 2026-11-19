@@ -1,4 +1,17 @@
-# 3D-Assistant — арт-пайплайн 3ds Max → Unity (VR Shooter)
+# vein-art — арт-пайплайн 3ds Max → Unity, проект Vein VR («Vein: Zeroing out»)
+
+Crocos · отдел Games · ПМ — Диас · 3D-модельер — Гриб Виктор · ведущий — Иван Г.
+Стандарт: Games — 3D-арт. Задачи — portal.crocos.kz, проект VEIN.
+Репозиторий временно на GitHub: доступа к GitLab Crocos пока нет. Когда появится — перенос с историей и LFS.
+История до 19.11.2026 перенесена из `cybercalmsystem-creator/Scripts` (папка `3dsMax/Claude Environment/Project/3D-Assistant`).
+
+## Быстрый старт (новая машина)
+
+```
+git config --global core.longpaths true      # путь одной Meshy-текстуры длиннее 260 символов
+git lfs install
+git clone https://github.com/cybercalmsystem-creator/vein-art.git
+```
 
 Правила: [Docs/ASSET_RULES.md](Docs/ASSET_RULES.md) · чек-лист Unity: [Docs/UNITY_SHOWCASE_CHECKLIST.md](Docs/UNITY_SHOWCASE_CHECKLIST.md) ·
 журнал ИИ: [Docs/AI_LOG.md](Docs/AI_LOG.md)
@@ -27,7 +40,9 @@ Unity-проект: `D:\Unity Projects\VR\vr test\My project` (6000.6.8f1, URP 1
 
 ```
 git lfs install
-git lfs lock "3dsMax/Claude Environment/Project/3D-Assistant/Source/Bot6/Bot6.max"   # перед работой со сценой
-git lfs unlock ...                                                                    # после коммита
+git lfs lock "Source/Bot6/Bot6.max"     # перед работой со сценой
+git lfs unlock "Source/Bot6/Bot6.max"   # после коммита
 ```
 Файл всегда один (без `_v3_final2`), версии — коммиты и теги `art-ГГГГ-WНН`.
+Пятница 20:00 — автоснимок `Tools/weekly_snapshot.ps1` (задача Windows «Art weekly snapshot»).
+Раз в месяц — пробное восстановление на чистой папке, журнал в `Export/_logs/restore_test_*.txt`.

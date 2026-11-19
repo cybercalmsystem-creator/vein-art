@@ -1,4 +1,4 @@
-# Правила ассетов проекта 3D-Assistant (VR Shooter)
+# Правила ассетов проекта Vein VR («Vein: Zeroing out»)
 
 Версия 1.0 · 2026-11-18 · пересмотр раз в квартал (следующий — до 2027-02-18)
 Основание: Стандарт 3D-пайплайна Crocos, раздел 1. Стандарт написан под Blender; в проекте рабочий DCC — **3ds Max 2027**,
@@ -25,7 +25,7 @@
 ## 2. Папки
 
 ```
-3D-Assistant/
+vein-art/
   Source/<Asset>/          исходники: <Asset>.max, Textures/ (запечённые T_*), Meshy/ (AI-исходник)   → Git LFS
   Export/<Asset>/          только то, что уходит в Unity: <Mesh>.fbx + T_*.png                         → Git LFS
   Export/_logs/            export_log_ГГГГ-ММ-ДД.txt (журнал batch_export)
